@@ -3,39 +3,22 @@
 //  -----------------------------
 
 // Light-theme colors
-// Purple
-$light-primary-purple: #635fc7;
-$light-secondary-purple: #a8a4ff;
-$light-tertiary-purple: linear-gradient(
-	180deg,
-	#e9effa 0%,
-	rgba(233, 239, 250, 0.5) 100%
-);
+$primary-purple-light: #4376ed;
+$secondary-purple-light: #6990eb;
 
-// gray
-$light-primary-gray: #828fa3;
-$light-secondary-gray: #f4f7fd;
+$primary-gray-light: #828fa3;
+$secondary-gray-light: #f4f7fd;
 
-// red
-$light-primary-red: #ea5555;
-$light-secondary-red: #ff9898;
+$primary-red-light: #ea5555;
+$secondary-red-light: #ff9898;
 
-// black
-$light-primary-black: #000112;
-
-// white
-$light-primary-white: #ffffff;
+$primary-black: #000112;
+$primary-white: #ffffff;
 
 // Dark-theme colors
-// gray
-$light-dark-primary-gray: #3e3f4e;
+$dark-primary-gray-light: #3e3f4e;
 $dark-primary-gray: #2b2c37;
 $darker-primary-gray: #20212c;
-$dark-tertiary-gray: linear-gradient(
-	180deg,
-	rgba(43, 44, 55, 0.25) 0%,
-	rgba(43, 44, 55, 0.125) 100%
-);
 
 //  ---------------------------
 //  Heading Sizes
