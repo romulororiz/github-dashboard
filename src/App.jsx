@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Navbar from './components/layout/Navbar';
+import User from './pages/User';
 
 function App() {
 	return (
@@ -10,6 +11,7 @@ function App() {
 				<main className='container'>
 					<Routes>
 						<Route path='/' exact element={<Home />} />
+						<Route path='/user/:login' element={<User />} />
 					</Routes>
 				</main>
 			</div>

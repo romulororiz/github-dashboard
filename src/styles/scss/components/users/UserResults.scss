@@ -7,8 +7,16 @@
 	gap: 1rem;
 	width: 100%;
 
+	@include breakpoint(1200px) {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
 	@include xl {
 		grid-template-columns: repeat(3, 1fr);
+	}
+
+	@include breakpoint(860px) {
+		grid-template-columns: repeat(2, 1fr);
 	}
 
 	@include lg {
