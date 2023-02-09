@@ -1,10 +1,8 @@
 import { useAlertContext } from '@hooks/useAlertContext';
 import '@styles/scss/components/layout/Alert.scss';
 
-const Alert = ({ msg, type }) => {
+const Alert = ({ msg }) => {
 	const { alert } = useAlertContext();
-
-	console.log(alert);
 
 	return (
 		<div className='alert'>

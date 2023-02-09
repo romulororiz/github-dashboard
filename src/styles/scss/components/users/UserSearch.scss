@@ -5,7 +5,7 @@
 	flex-direction: column;
 	width: 100%;
 	margin-bottom: 1rem;
-	
+
 	span {
 		padding: 0.5rem 0;
 	}
@@ -29,8 +29,8 @@
 			width: 40%;
 			padding: 0.75rem;
 			border: none;
-			border-radius: 8px;
 			outline: none;
+			border-radius: 8px;
 			border-top-right-radius: 0;
 			border-bottom-right-radius: 0;
 
@@ -69,8 +69,9 @@
 
 		.user-clear__button {
 			@extend .user-search__button;
-			border-radius: 8px !important;
 			background-color: $primary-red-light;
+			border-radius: 8px !important;
+			margin-right: 0 !important;
 
 			@include md {
 				margin-top: 1rem;

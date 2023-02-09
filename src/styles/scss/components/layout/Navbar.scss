@@ -5,7 +5,8 @@
 	height: 80px;
 	background-color: $dark-primary-gray;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	padding: 0.75rem 0;
+	padding: 1rem 0;
+	color: rgba($primary-white, 0.5);
 
 	.navbar__container {
 		max-width: 1200px;
@@ -19,7 +20,13 @@
 			height: 100%;
 			width: 100px;
 			margin-right: 1rem;
-			fill: $primary-white;
+			color: rgba($primary-white, 0.5);
+		}
+
+		h2 {
+			position: relative;
+			left: -25px;
+			cursor: pointer;
 		}
 	}
 }

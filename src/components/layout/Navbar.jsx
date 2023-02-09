@@ -6,7 +6,7 @@ const Navbar = () => {
 		<nav className='navbar'>
 			<div className='navbar__container'>
 				<FaGithub className='navbar__logo' />
-                <h1>Github Finder</h1>
+				<h2>Github Finder</h2>
 			</div>
 		</nav>
 	);

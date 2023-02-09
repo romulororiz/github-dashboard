@@ -18,7 +18,7 @@ const UserSearch = () => {
 		e.preventDefault();
 
 		if (query === '') {
-			setAlert('You forgot something there!', 'error');
+			setAlert('You need to search for something', 'error');
 		} else {
 			dispatch({ type: 'SET_LOADING' });
 			try {
@@ -60,7 +60,7 @@ const UserSearch = () => {
 				)}
 			</div>
 
-			{alert && <Alert msg={alert?.msg} type={alert?.type} />}
+			{alert && <Alert msg={alert?.msg} />}
 		</div>
 	);
 };
