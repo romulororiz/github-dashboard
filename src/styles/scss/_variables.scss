@@ -1,0 +1,68 @@
+//  -----------------------------
+//  Theme Colors
+//  -----------------------------
+
+// Light-theme colors
+// Purple
+$light-primary-purple: #635fc7;
+$light-secondary-purple: #a8a4ff;
+$light-tertiary-purple: linear-gradient(
+	180deg,
+	#e9effa 0%,
+	rgba(233, 239, 250, 0.5) 100%
+);
+
+// gray
+$light-primary-gray: #828fa3;
+$light-secondary-gray: #f4f7fd;
+
+// red
+$light-primary-red: #ea5555;
+$light-secondary-red: #ff9898;
+
+// black
+$light-primary-black: #000112;
+
+// white
+$light-primary-white: #ffffff;
+
+// Dark-theme colors
+// gray
+$light-dark-primary-gray: #3e3f4e;
+$dark-primary-gray: #2b2c37;
+$darker-primary-gray: #20212c;
+$dark-tertiary-gray: linear-gradient(
+	180deg,
+	rgba(43, 44, 55, 0.25) 0%,
+	rgba(43, 44, 55, 0.125) 100%
+);
+
+//  ---------------------------
+//  Heading Sizes
+//  ---------------------------
+
+$heading-xl: 24px;
+$heading-lg: 18px;
+$heading-md: 15px;
+$heading-sm: 12px;
+
+// ---------------------------
+//  Font Sizes
+//  ---------------------------
+
+$font-size-l: 13px;
+$font-size-m: 12px;
+
+// -----------------------------
+//  Box Shadows
+//  -----------------------------
+
+$box-shadow: 0px 25px 40px rgba(0, 0, 0, 0.0951141);
+
+// -----------------------------
+//  Transitions
+//  -----------------------------
+
+$ease-1: 0.1s ease-out;
+$ease-2: 0.2s ease-out;
+$ease-3: 0.3s ease-out;
