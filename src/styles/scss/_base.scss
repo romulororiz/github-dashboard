@@ -34,9 +34,14 @@ body {
 	height: 100%;
 }
 
+html {
+	color: $secondary-gray-light;
+}
+
 body {
 	-webkit-font-smoothing: antialiased;
 	font-family: Poppins, -apple-system, system-ui, sans-serif;
+	background-color: $dark-primary-gray-light;
 }
 img,
 picture,
@@ -66,4 +71,20 @@ h6 {
 #root,
 #__next {
 	isolation: isolate;
+}
+
+.main-content {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+
+	.container {
+		width: 100%;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 2rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
 }
