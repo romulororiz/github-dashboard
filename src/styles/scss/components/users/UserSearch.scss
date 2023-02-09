@@ -1,0 +1,87 @@
+@import '../../variables.scss', '../../breakpoints.scss';
+
+.user-search {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin-bottom: 1rem;
+	
+	span {
+		padding: 0.5rem 0;
+	}
+
+	.user-search__container {
+		width: 100%;
+		display: flex;
+
+		@include md {
+			flex-direction: column;
+		}
+
+		form {
+			width: 100%;
+			display: flex;
+			justify-content: flex-start;
+		}
+
+		.user-search__input {
+			height: 50px;
+			width: 40%;
+			padding: 0.75rem;
+			border: none;
+			border-radius: 8px;
+			outline: none;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+
+			@include md {
+				width: 100%;
+				font-size: $font-size-l;
+			}
+		}
+
+		.user-search__button {
+			height: 50px;
+			padding: 0.5rem 1.5rem;
+			border: none;
+			background-color: $primary-black;
+			color: inherit;
+			border-radius: 8px;
+			cursor: pointer;
+			outline: none;
+			margin: 0 0.5rem;
+			transition: $ease-1;
+
+			@include md {
+				font-size: $font-size-l;
+			}
+
+			&:hover {
+				background-color: $dark-primary-gray;
+			}
+
+			&:first-of-type {
+				margin-left: 0 !important;
+				border-top-left-radius: 0;
+				border-bottom-left-radius: 0;
+			}
+		}
+
+		.user-clear__button {
+			@extend .user-search__button;
+			border-radius: 8px !important;
+			background-color: $primary-red-light;
+
+			@include md {
+				margin-top: 1rem;
+				display: inline-block;
+				height: 35px;
+				padding: 0;
+			}
+
+			&:hover {
+				background-color: $secondary-red-light;
+			}
+		}
+	}
+}
