@@ -32,7 +32,7 @@ export const searchUsers = async query => {
 export const getUserAndRepos = async login => {
 	const [user, repos] = await Promise.all([
 		github.get(`/users/${login}`),
-		github.get(`/users/${login}/repos?per_page=10`),
+		github.get(`/users/${login}/repos`),
 	]);
 
 	if (user.status === 404) {

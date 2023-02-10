@@ -1,6 +1,6 @@
 import { useGithubContext } from '@hooks/useGithubContext';
 import { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { getUserAndRepos } from '@context/github/githubActions';
 import Spinner from '@components/layout/Spinner';
 import { FaUsers } from 'react-icons/fa';
@@ -13,6 +13,8 @@ const User = () => {
 	const { user, loading, dispatch } = useGithubContext();
 
 	const params = useParams();
+
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		dispatch({ type: 'SET_LOADING' });
@@ -28,7 +30,6 @@ const User = () => {
 
 	const {
 		name,
-		type,
 		avatar_url,
 		location,
 		bio,
@@ -40,7 +41,6 @@ const User = () => {
 		following,
 		public_repos,
 		public_gists,
-		hireable,
 	} = user;
 
 	if (loading) return <Spinner />;
@@ -124,7 +124,10 @@ const User = () => {
 						<p>{following}</p>
 					</>
 				</div>
-				<div className='user-profile-page-stats-item'>
+				<div
+					className='user-profile-page-stats-item'
+					onClick={() => navigate(`/user/${params.login}/repos`)}
+				>
 					<ImCodepen />
 					<>
 						<span>Public Repos</span>
