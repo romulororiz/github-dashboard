@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { searchUsers } from '@context/github/githubActions';
 import { useGithubContext } from '@hooks/useGithubContext';
 import { useAlertContext } from '@hooks/useAlertContext';
 import Alert from '../layout/Alert';
@@ -8,7 +7,7 @@ import '@styles/scss/components/users/UserSearch.scss';
 const UserSearch = () => {
 	const [query, setQuery] = useState('');
 
-	const { users, dispatch } = useGithubContext();
+	const { users, dispatch, searchUsers } = useGithubContext();
 
 	const { setAlert, alert } = useAlertContext();
 
@@ -20,14 +19,7 @@ const UserSearch = () => {
 		if (query === '') {
 			setAlert('You need to search for something', 'error');
 		} else {
-			dispatch({ type: 'SET_LOADING' });
-			try {
-				const users = await searchUsers(query);
-				dispatch({ type: 'GET_USERS', payload: users });
-				setQuery('');
-			} catch (error) {
-				console.log(error);
-			}
+			searchUsers(query);
 		}
 	};
 

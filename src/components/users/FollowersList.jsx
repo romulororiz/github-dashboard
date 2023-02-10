@@ -3,30 +3,19 @@ import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useGithubContext } from '@hooks/useGithubContext';
 import Spinner from '@components/layout/Spinner';
-import { getUser, getUserFollowers } from '@context/github/GithubActions';
 import '@styles/scss/components/users/FollowersList.scss';
 import { FaChevronLeft } from 'react-icons/fa';
 
 const FollowersList = () => {
 	const params = useParams();
 
-	const { user, dispatch, loading, followers } = useGithubContext();
+	const { user, dispatch, loading, followers, getUser, getUserFollowers } =
+		useGithubContext();
 
 	useEffect(() => {
 		dispatch({ type: 'SET_LOADING' });
-		const getUserData = async () => {
-			const followers = await getUserFollowers(params.login);
-			const user = await getUser(params.login);
-			dispatch({
-				type: 'GET_USER',
-				payload: user,
-			});
-			dispatch({
-				type: 'GET_FOLLOWERS',
-				payload: followers,
-			});
-		};
-		getUserData();
+		getUser(params.login);
+		getUserFollowers(params.login);
 	}, [params.login]);
 
 	if (loading) return <Spinner />;

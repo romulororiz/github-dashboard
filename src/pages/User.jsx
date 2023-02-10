@@ -1,16 +1,14 @@
 import { useGithubContext } from '@hooks/useGithubContext';
 import { useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { getUserAndRepos } from '@context/github/githubActions';
-import Spinner from '@components/layout/Spinner';
 import { FaUsers, FaChevronLeft } from 'react-icons/fa';
 import { HiUsers } from 'react-icons/hi';
 import { ImCodepen } from 'react-icons/im';
-import { BsShopWindow } from 'react-icons/bs';
+import Spinner from '@components/layout/Spinner';
 import '@styles/scss/pages/User.scss';
 
 const User = () => {
-	const { user, loading, dispatch } = useGithubContext();
+	const { user, loading, dispatch, getUserAndRepos } = useGithubContext();
 
 	const params = useParams();
 
@@ -18,14 +16,7 @@ const User = () => {
 
 	useEffect(() => {
 		dispatch({ type: 'SET_LOADING' });
-		const getUserData = async () => {
-			const userData = await getUserAndRepos(params.login);
-			dispatch({
-				type: 'GET_USER_AND_REPOS',
-				payload: userData,
-			});
-		};
-		getUserData();
+		getUserAndRepos(params.login);
 	}, [params.login]);
 
 	const {

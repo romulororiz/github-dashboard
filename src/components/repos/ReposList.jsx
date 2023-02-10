@@ -1,10 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { useGithubContext } from '@hooks/useGithubContext';
 import { useEffect, useState } from 'react';
-import {
-	getUserAndRepos,
-	sortReposByStars,
-} from '@context/github/githubActions';
 import { FaChevronLeft } from 'react-icons/fa';
 import Spinner from '@components/layout/Spinner';
 import RepoItem from './RepoItem';
@@ -15,18 +11,12 @@ const ReposList = () => {
 
 	const params = useParams();
 
-	const { user, repos, dispatch, loading } = useGithubContext();
+	const { user, repos, dispatch, loading, getUserAndRepos, sortReposByStars } =
+		useGithubContext();
 
 	useEffect(() => {
 		dispatch({ type: 'SET_LOADING' });
-		const getUserData = async () => {
-			const userData = await getUserAndRepos(params.login);
-			dispatch({
-				type: 'GET_USER_AND_REPOS',
-				payload: userData,
-			});
-		};
-		getUserData();
+		getUserAndRepos(params.login);
 	}, [params.login]);
 
 	if (loading) return <Spinner />;
