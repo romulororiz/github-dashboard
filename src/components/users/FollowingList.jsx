@@ -24,7 +24,10 @@ const FollowingList = () => {
 			<div className='user-following-page-back'>
 				<Link
 					to={`/user/${user?.login}`}
-					onClick={() => dispatch({ type: 'CLEAR_USER' })}
+					onClick={() => {
+						dispatch({ type: 'CLEAR_USER' });
+						dispatch({ type: 'CLEAR_FOLLOWING' });
+					}}
 				>
 					<FaChevronLeft /> Back to Profile
 				</Link>

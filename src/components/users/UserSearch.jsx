@@ -7,9 +7,7 @@ import '@styles/scss/components/users/UserSearch.scss';
 const UserSearch = () => {
 	const [query, setQuery] = useState('');
 
-	const { users, dispatch, searchUsers, user} = useGithubContext();
-
-	console.log(user)
+	const { users, dispatch, searchUsers } = useGithubContext();
 
 	const { setAlert, alert } = useAlertContext();
 

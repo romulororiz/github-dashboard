@@ -25,9 +25,10 @@ const FollowersList = () => {
 			<div className='user-followers-page-back'>
 				<Link
 					to={`/user/${user?.login}`}
-					onClick={() =>
-						dispatch({ type: 'CLEAR_USERS' }, { type: 'CLEAR_USER' })
-					}
+					onClick={() => {
+						dispatch({ type: 'CLEAR_USER' });
+						dispatch({ type: 'CLEAR_FOLLOWERS' });
+					}}
 				>
 					<FaChevronLeft /> Back to Profile
 				</Link>

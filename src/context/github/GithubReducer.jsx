@@ -21,6 +21,10 @@ const githubReducer = (state, action) => {
 			return { ...state, users: [], loading: false };
 		case 'CLEAR_USER':
 			return { ...state, user: {}, repos: [], loading: false };
+		case 'CLEAR_FOLLOWERS':
+			return { ...state, followers: [], loading: false };
+		case 'CLEAR_FOLLOWING':
+			return { ...state, following: [], loading: false };
 		default:
 			return state;
 	}
