@@ -24,6 +24,7 @@ export const GithubProvider = ({ children }) => {
 		following: [],
 		repos: [],
 		loading: false,
+		error: null,
 	};
 
 	const [state, dispatch] = useReducer(githubReducer, initialState);
@@ -36,9 +37,20 @@ export const GithubProvider = ({ children }) => {
 
 		const response = await github.get(`/search/users?${params}`);
 
+		const items = response.data.items;
+
+		if (items.length === 0) {
+			dispatch({
+				type: 'USER_NOT_FOUND',
+				payload: `${query} does not exist`,
+			});
+
+			setTimeout(() => dispatch({ type: 'CLEAR_ERROR' }), 3000);
+		}
+
 		dispatch({
 			type: 'GET_USERS',
-			payload: response.data.items,
+			payload: items,
 		});
 	};
 
