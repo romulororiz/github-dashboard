@@ -145,6 +145,17 @@
 					margin-right: 0.5rem;
 					border-right: 1px solid rgba($primary-white, 0.5);
 
+					.details-item-heading {
+						display: flex;
+
+						svg {
+							color: rgba($primary-white, 0.5);
+							margin-right: 0.25rem;
+							position: relative;
+							top: 1px;
+						}
+					}
+
 					a {
 						color: $primary-white;
 					}

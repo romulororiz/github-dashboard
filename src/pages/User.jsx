@@ -1,9 +1,10 @@
 import { useGithubContext } from '@hooks/useGithubContext';
 import { useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { FaUsers, FaChevronLeft } from 'react-icons/fa';
+import { FaUsers, FaChevronLeft, FaAt, FaTwitter } from 'react-icons/fa';
 import { HiUsers } from 'react-icons/hi';
 import { ImCodepen } from 'react-icons/im';
+import { MdLocationOn } from 'react-icons/md';
 import Spinner from '@components/layout/Spinner';
 import '@styles/scss/pages/User.scss';
 
@@ -84,13 +85,19 @@ const User = () => {
 						<div className='user-profile-page-info-details'>
 							{location && (
 								<div className='user-profile-page-info-details-item'>
-									<span>Location</span>
+									<div className='details-item-heading'>
+										<MdLocationOn />
+										<span>Location</span>
+									</div>
 									<p>{location}</p>
 								</div>
 							)}
 							{blog && (
 								<div className='user-profile-page-info-details-item'>
-									<span>Website</span>
+									<div className='details-item-heading'>
+										<FaAt />
+										<span>Website</span>
+									</div>
 									<a
 										href={
 											blog.includes('https://') || blog.includes('http://')
@@ -106,8 +113,15 @@ const User = () => {
 							)}
 							{twitter_username && (
 								<div className='user-profile-page-info-details-item'>
-									<span>Twitter</span>
-									<a href={`https://twitter.com/${twitter_username}`}>
+									<div className='details-item-heading'>
+										<FaTwitter />
+										<span>Twitter</span>
+									</div>
+									<a
+										href={`https://twitter.com/${twitter_username}`}
+										target='_blank'
+										rel='noreferrer'
+									>
 										{twitter_username}
 									</a>
 								</div>
