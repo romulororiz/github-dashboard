@@ -13,8 +13,13 @@ const FollowingList = () => {
 		useGithubContext();
 
 	useEffect(() => {
-		getUser(params.login);
-		getUserFollowing(params.login);
+		const getUserData = async () => {
+			dispatch({ type: 'SET_LOADING' });
+			await getUser(params.login);
+			await getUserFollowing(params.login);
+		};
+
+		getUserData();
 	}, [params.login]);
 
 	if (loading) return <Spinner />;
@@ -33,7 +38,7 @@ const FollowingList = () => {
 				</Link>
 			</div>
 			<h2>
-				{`Following ${user?.name}`} ({user.following})
+				{`Followed by ${user?.name}`} ({user.following})
 			</h2>
 			<div className='following-list-grid'>
 				{following?.map(follow => (

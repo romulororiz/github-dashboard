@@ -1,23 +1,11 @@
-@import '../variables', '../breakpoints';
+@import '../variables', '../breakpoints', '../mixins';
 
 .user-profile-page {
 	margin-top: 2rem;
 	margin-bottom: 2rem;
 
 	.user-profile-page-back {
-		padding: 1rem 0;
-
-		a {
-			display: flex;
-			text-decoration: none;
-			color: $primary-white;
-
-			svg {
-				position: relative;
-				top: 4px;
-				margin-right: 0.5rem;
-			}
-		}
+		@include backButton;
 	}
 
 	.user-profile-page-container {

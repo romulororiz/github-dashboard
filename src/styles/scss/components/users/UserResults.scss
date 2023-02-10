@@ -1,34 +1,5 @@
-@import '../../breakpoints.scss';
+@import '../../breakpoints.scss', '../../mixins.scss';
 
 .user-results {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	margin-top: 1rem;
-	gap: 1rem;
-	width: 100%;
-
-	@include breakpoint(1200px) {
-		grid-template-columns: repeat(3, 1fr);
-	}
-
-	@include xl {
-		grid-template-columns: repeat(3, 1fr);
-	}
-
-	@include breakpoint(860px) {
-		grid-template-columns: repeat(2, 1fr);
-	}
-
-	@include lg {
-		grid-template-columns: repeat(2, 1fr);
-	}
-
-	@include md {
-		grid-template-columns: repeat(1, 1fr);
-		margin-top: 0;
-	}
-
-	@include sm {
-		grid-template-columns: repeat(1, 1fr);
-	}
+	@include gridLayout;
 }

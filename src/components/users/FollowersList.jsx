@@ -13,9 +13,13 @@ const FollowersList = () => {
 		useGithubContext();
 
 	useEffect(() => {
-		dispatch({ type: 'SET_LOADING' });
-		getUser(params.login);
-		getUserFollowers(params.login);
+		const getUserData = async () => {
+			dispatch({ type: 'SET_LOADING' });
+			await getUser(params.login);
+			await getUserFollowers(params.login);
+		};
+
+		getUserData();
 	}, [params.login]);
 
 	if (loading) return <Spinner />;

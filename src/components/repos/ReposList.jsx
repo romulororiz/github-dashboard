@@ -15,8 +15,12 @@ const ReposList = () => {
 		useGithubContext();
 
 	useEffect(() => {
-		dispatch({ type: 'SET_LOADING' });
-		getUserAndRepos(params.login);
+		const getUserData = async () => {
+			dispatch({ type: 'SET_LOADING' });
+			await getUserAndRepos(params.login);
+		};
+
+		getUserData();
 	}, [params.login]);
 
 	if (loading) return <Spinner />;

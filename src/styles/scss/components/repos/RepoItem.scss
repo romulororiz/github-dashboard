@@ -85,17 +85,6 @@
 			&:last-child {
 				margin-right: 0;
 			}
-
-			.repo-item-stats-item-value {
-				font-size: $heading-xl;
-				font-weight: 700;
-				color: $primary-white;
-			}
-
-			.repo-item-stats-item-name {
-				font-size: $font-size-m;
-				color: $primary-gray-light;
-			}
 		}
 	}
 }

@@ -15,8 +15,12 @@ const User = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		dispatch({ type: 'SET_LOADING' });
-		getUserAndRepos(params.login);
+		const getUserData = async () => {
+			dispatch({ type: 'SET_LOADING' });
+			await getUserAndRepos(params.login);
+		};
+
+		getUserData();
 	}, [params.login]);
 
 	const {
