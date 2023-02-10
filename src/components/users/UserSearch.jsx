@@ -16,7 +16,6 @@ const UserSearch = () => {
 	const handleSubmit = async e => {
 		e.preventDefault();
 
-		// check if query is empty and if yes setAlert with message
 		if (query === '') {
 			setAlert('Please enter something');
 		} else {
