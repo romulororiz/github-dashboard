@@ -42,7 +42,7 @@ export const GithubProvider = ({ children }) => {
 		if (items.length === 0) {
 			dispatch({
 				type: 'USER_NOT_FOUND',
-				payload: `${query} does not exist`,
+				payload: `user ${query} does not exist`,
 			});
 
 			setTimeout(() => dispatch({ type: 'CLEAR_ERROR' }), 3000);
