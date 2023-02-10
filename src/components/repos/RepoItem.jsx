@@ -24,7 +24,7 @@ const RepoItem = ({ repo }) => {
 					className='repo-item-name'
 				>
 					<BiLink />
-					<h3>{name}</h3>
+					<p>{name}</p>
 				</a>
 				<div className='repo-item-description'>
 					<p>{description}</p>
