@@ -12,8 +12,6 @@ const FollowingList = () => {
 
 	const { user, dispatch, loading, following } = useGithubContext();
 
-	console.log(following);
-
 	useEffect(() => {
 		dispatch({ type: 'SET_LOADING' });
 		const getUserData = async () => {

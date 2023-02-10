@@ -65,3 +65,4 @@ export const getUserFollowing = async login => {
 
 	return response.data;
 };
+

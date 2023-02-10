@@ -9,7 +9,6 @@ export const GithubProvider = ({ children }) => {
 		user: {},
 		followers: [],
 		following: [],
-		gists: [],
 		repos: [],
 		loading: false,
 	};

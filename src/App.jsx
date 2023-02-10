@@ -18,6 +18,7 @@ function App() {
 						<Route path='/user/:login/repos' element={<Repos />} />
 						<Route path='/user/:login/followers' element={<Followers />} />
 						<Route path='/user/:login/following' element={<Following />} />
+						
 					</Routes>
 				</main>
 			</div>

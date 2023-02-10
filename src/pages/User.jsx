@@ -140,13 +140,6 @@ const User = () => {
 						<p>{public_repos}</p>
 					</>
 				</div>
-				<div className='user-profile-page-stats-item'>
-					<BsShopWindow />
-					<>
-						<span>Public Gists</span>
-						<p>{public_gists}</p>
-					</>
-				</div>
 			</div>
 		</div>
 	);
