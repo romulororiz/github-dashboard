@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useGithubContext } from '@hooks/useGithubContext';
 import { FaChevronLeft } from 'react-icons/fa';
 import Spinner from '@components/layout/Spinner';
-import '@styles/scss/components/users/FollowingList.scss';
 import UserItem from './UserItem';
+import '@styles/scss/components/users/FollowingList.scss';
 
 const FollowingList = () => {
 	const params = useParams();
+	const navigate = useNavigate();
 
 	const { user, dispatch, loading, following, getUserFollowing, getUser } =
 		useGithubContext();
@@ -15,8 +16,12 @@ const FollowingList = () => {
 	useEffect(() => {
 		const getUserData = async () => {
 			dispatch({ type: 'SET_LOADING' });
-			await getUser(params.login);
-			await getUserFollowing(params.login);
+			try {
+				await getUser(params.login);
+				await getUserFollowing(params.login);
+			} catch (error) {
+				navigate('/not-found');
+			}
 		};
 
 		getUserData();

@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useGithubContext } from '@hooks/useGithubContext';
 import { useEffect, useState } from 'react';
 import { FaChevronLeft } from 'react-icons/fa';
@@ -10,6 +10,8 @@ const ReposList = () => {
 	const [order, setOrder] = useState('desc');
 
 	const params = useParams();
+	const navigate = useNavigate();
+
 
 	const { user, repos, dispatch, loading, getUserAndRepos, sortReposByStars } =
 		useGithubContext();
@@ -17,7 +19,11 @@ const ReposList = () => {
 	useEffect(() => {
 		const getUserData = async () => {
 			dispatch({ type: 'SET_LOADING' });
-			await getUserAndRepos(params.login);
+			try {
+				await getUserAndRepos(params.login);
+			} catch (error) {
+				navigate('/not-found');
+			}
 		};
 
 		getUserData();

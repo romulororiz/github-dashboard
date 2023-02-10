@@ -20,7 +20,7 @@ const UserSearch = () => {
 			setAlert('Please enter something');
 		} else {
 			dispatch({ type: 'SET_LOADING' });
-			searchUsers(query);
+			await searchUsers(query);
 			setQuery('');
 		}
 	};

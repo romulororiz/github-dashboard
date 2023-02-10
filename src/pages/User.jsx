@@ -17,7 +17,11 @@ const User = () => {
 	useEffect(() => {
 		const getUserData = async () => {
 			dispatch({ type: 'SET_LOADING' });
-			await getUserAndRepos(params.login);
+			try {
+				await getUserAndRepos(params.login);
+			} catch (error) {
+				navigate('/not-found');
+			}
 		};
 
 		getUserData();

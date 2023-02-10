@@ -20,6 +20,7 @@ function App() {
 						<Route path='/user/:login/repos' element={<Repos />} />
 						<Route path='/user/:login/followers' element={<Followers />} />
 						<Route path='/user/:login/following' element={<Following />} />
+						<Route path='/not-found' element={<NotFound />} />
 						<Route path='/*' element={<NotFound />} />
 					</Routes>
 				</main>
