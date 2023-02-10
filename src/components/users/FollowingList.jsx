@@ -33,7 +33,7 @@ const FollowingList = () => {
 				</Link>
 			</div>
 			<h2>
-				{`Following ${user?.name}`} - ({user.following})
+				{`Following ${user?.name}`} ({user.following})
 			</h2>
 			<div className='following-list-grid'>
 				{following?.map(follow => (

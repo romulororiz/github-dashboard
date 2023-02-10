@@ -34,7 +34,7 @@ const FollowersList = () => {
 				</Link>
 			</div>
 			<h2>
-				{`${user?.name}'s Followers`} - ({user.followers})
+				{`${user?.name}'s Followers`} ({user.followers})
 			</h2>
 			<div className='followers-list-grid'>
 				{followers?.map(follower => (
