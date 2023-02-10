@@ -1,13 +1,18 @@
 import { Link, useParams } from 'react-router-dom';
 import { useGithubContext } from '@hooks/useGithubContext';
-import { useEffect } from 'react';
-import { getUserAndRepos } from '@context/github/githubActions';
+import { useEffect, useState } from 'react';
+import {
+	getUserAndRepos,
+	sortReposByStars,
+} from '@context/github/githubActions';
 import { FaChevronLeft } from 'react-icons/fa';
 import Spinner from '@components/layout/Spinner';
 import RepoItem from './RepoItem';
 import '@styles/scss/components/repos/ReposList.scss';
 
 const ReposList = () => {
+	const [order, setOrder] = useState('desc');
+
 	const params = useParams();
 
 	const { user, repos, dispatch, loading } = useGithubContext();
@@ -26,6 +31,12 @@ const ReposList = () => {
 
 	if (loading) return <Spinner />;
 
+	sortReposByStars(repos, order);
+
+	const handleSort = () => {
+		setOrder(order === 'desc' ? 'asc' : 'desc');
+	};
+
 	return (
 		<div className='repos-list'>
 			<div className='user-repos-page-back'>
@@ -38,9 +49,14 @@ const ReposList = () => {
 					<FaChevronLeft /> Back to Profile
 				</Link>
 			</div>
-			<h2>
-				{`${user?.name}'s Public Repos`} ({user?.public_repos})
-			</h2>
+			<div className='repos-list-heading'>
+				<h2>
+					{`${user?.name}'s Public Repos`} ({user?.public_repos})
+				</h2>
+				<button onClick={handleSort}>
+					Sort by Stars {order === 'desc' ? '↓' : '↑'}
+				</button>
+			</div>
 			<div className='repos-list-grid'>
 				{repos?.map(repo => (
 					<RepoItem key={repo.id} repo={repo} />

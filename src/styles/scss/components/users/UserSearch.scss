@@ -19,14 +19,18 @@
 		}
 
 		form {
-			width: 100%;
+			width: 50%;
 			display: flex;
 			justify-content: flex-start;
+
+			@include lg {
+				width: 100%;
+			}
 		}
 
 		.user-search__input {
 			height: 50px;
-			width: 40%;
+			width: 100%;
 			padding: 0.75rem;
 			border: none;
 			outline: none;
@@ -35,7 +39,6 @@
 			border-bottom-right-radius: 0;
 
 			@include md {
-				width: 100%;
 				font-size: $font-size-l;
 			}
 		}

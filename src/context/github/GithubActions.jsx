@@ -66,3 +66,11 @@ export const getUserFollowing = async login => {
 	return response.data;
 };
 
+// sort repos by stars
+export const sortReposByStars = (repos, order) => {
+	if (order === 'asc') {
+		return repos.sort((a, b) => a.stargazers_count - b.stargazers_count);
+	} else {
+		return repos.sort((a, b) => b.stargazers_count - a.stargazers_count);
+	}
+};

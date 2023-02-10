@@ -9,7 +9,7 @@ const Navbar = () => {
 		<nav className='navbar'>
 			<div className='navbar__container'>
 				<FaGithub className='navbar__logo' />
-				<h2 onClick={() => navigate('/')}>Github Finder</h2>
+				<h2 onClick={() => navigate('/')}>Github Dashboard</h2>
 			</div>
 		</nav>
 	);

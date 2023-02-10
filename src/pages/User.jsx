@@ -40,7 +40,6 @@ const User = () => {
 		followers,
 		following,
 		public_repos,
-		public_gists,
 	} = user;
 
 	if (loading) return <Spinner />;
@@ -72,7 +71,7 @@ const User = () => {
 						<h1>{name}</h1>
 					</div>
 					<div className='user-profile-page-bio'>
-						<p>{bio ? bio : ' Lorem ipsum dolor sit amet'}</p>
+						<p>{bio}</p>
 					</div>
 					<div className='user-profile-page-action'>
 						<button type='button'>

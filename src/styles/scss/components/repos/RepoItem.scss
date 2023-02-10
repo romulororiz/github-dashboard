@@ -13,6 +13,10 @@
 		align-items: flex-start;
 	}
 
+	@include md {
+		padding: 1rem;
+	}
+
 	.repo-item-info {
 		@include lg {
 			margin-bottom: 2rem;
@@ -36,7 +40,7 @@
 	}
 
 	.repo-item-stats {
-		min-width: 300px;
+		max-width: 300px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -50,19 +54,19 @@
 		}
 
 		@include md {
-			min-width: 100%;
-			margin-left: 0;
-			padding: 1rem .5rem;
+			width: 100%;
+			margin: 0;
+			padding: 1rem 0;
 		}
 
-		> .repo-item-stats-item {
+		.repo-item-stats-item {
 			margin-right: 3rem;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			
+
 			@include lg {
-				padding: 0 !important;
+				padding: 0;
 			}
 
 			.icon {
