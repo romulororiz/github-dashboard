@@ -6,6 +6,7 @@ import Repos from '@pages/Repos';
 import Followers from '@pages/Followers';
 import Following from '@pages/Following';
 import Footer from '@components/layout/Footer';
+import NotFound from '@pages/NotFound';
 
 function App() {
 	return (
@@ -19,6 +20,7 @@ function App() {
 						<Route path='/user/:login/repos' element={<Repos />} />
 						<Route path='/user/:login/followers' element={<Followers />} />
 						<Route path='/user/:login/following' element={<Following />} />
+						<Route path='/*' element={<NotFound />} />
 					</Routes>
 				</main>
 				<Footer />
