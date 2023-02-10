@@ -91,7 +91,15 @@ const User = () => {
 							{blog && (
 								<div className='user-profile-page-info-details-item'>
 									<span>Website</span>
-									<a href={`https://${blog}`} target='_blank' rel='noreferrer'>
+									<a
+										href={
+											blog.includes('https://') || blog.includes('http://')
+												? blog
+												: `https://${blog}`
+										}
+										target='_blank'
+										rel='noreferrer'
+									>
 										{blog}
 									</a>
 								</div>
