@@ -17,6 +17,7 @@ src/styles/css/
 
 # env
 .env
+netlify.toml
 
 # Editor directories and files
 .vscode/*
