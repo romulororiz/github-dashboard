@@ -8,6 +8,8 @@ export const GithubProvider = ({ children }) => {
 		users: [],
 		user: {},
 		followers: [],
+		following: [],
+		gists: [],
 		repos: [],
 		loading: false,
 	};

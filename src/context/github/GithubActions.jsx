@@ -58,3 +58,10 @@ export const getUserFollowers = async login => {
 
 	return response.data;
 };
+
+// Get user following
+export const getUserFollowing = async login => {
+	const response = await github.get(`/users/${login}/following`);
+
+	return response.data;
+};

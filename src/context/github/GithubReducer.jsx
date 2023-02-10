@@ -13,6 +13,8 @@ const githubReducer = (state, action) => {
 			return { ...state, user: action.payload, loading: false };
 		case 'GET_FOLLOWERS':
 			return { ...state, followers: action.payload, loading: false };
+		case 'GET_FOLLOWING':
+			return { ...state, following: action.payload, loading: false };
 		case 'SET_LOADING':
 			return { ...state, loading: true };
 		case 'CLEAR_USERS':

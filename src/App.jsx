@@ -4,6 +4,7 @@ import Navbar from './components/layout/Navbar';
 import User from './pages/User';
 import Repos from './pages/Repos';
 import Followers from './pages/Followers';
+import Following from './pages/Following';
 
 function App() {
 	return (
@@ -16,6 +17,7 @@ function App() {
 						<Route path='/user/:login' element={<User />} />
 						<Route path='/user/:login/repos' element={<Repos />} />
 						<Route path='/user/:login/followers' element={<Followers />} />
+						<Route path='/user/:login/following' element={<Following />} />
 					</Routes>
 				</main>
 			</div>

@@ -120,7 +120,10 @@ const User = () => {
 						<p>{followers}</p>
 					</>
 				</div>
-				<div className='user-profile-page-stats-item'>
+				<div
+					className='user-profile-page-stats-item'
+					onClick={() => navigate(`/user/${params.login}/following`)}
+				>
 					<HiUsers />
 					<>
 						<span>Following</span>

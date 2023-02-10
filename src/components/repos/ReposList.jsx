@@ -38,7 +38,7 @@ const ReposList = () => {
 					<FaChevronLeft /> Back to Profile
 				</Link>
 			</div>
-			<h2>{`${user?.name}'s Public Repos`}</h2>
+			<h2>{`${user?.name}'s Public Repos`} ({user?.public_repos})</h2>
 			<div className='repos-list-grid'>
 				{repos?.map(repo => (
 					<RepoItem key={repo.id} repo={repo} />
