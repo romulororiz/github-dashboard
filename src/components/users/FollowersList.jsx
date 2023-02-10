@@ -22,6 +22,8 @@ const FollowersList = () => {
 		getUserData();
 	}, [params.login]);
 
+	console.log(followers);
+
 	if (loading) return <Spinner />;
 
 	return (

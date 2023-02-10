@@ -35,7 +35,7 @@ export const GithubProvider = ({ children }) => {
 			q: query,
 		});
 
-		const response = await github.get(`/search/users?${params}`);
+		const response = await github.get(`/search/users?${params}&per_page=100`);
 
 		const items = response.data.items;
 
@@ -58,7 +58,7 @@ export const GithubProvider = ({ children }) => {
 	const getUserAndRepos = async login => {
 		const [user, repos] = await Promise.all([
 			github.get(`/users/${login}`),
-			github.get(`/users/${login}/repos`),
+			github.get(`/users/${login}/repos?per_page=100`),
 		]);
 
 		dispatch({
@@ -82,7 +82,7 @@ export const GithubProvider = ({ children }) => {
 
 	// Get user followers
 	const getUserFollowers = async login => {
-		const response = await github.get(`/users/${login}/followers`);
+		const response = await github.get(`/users/${login}/followers?per_page=100`);
 
 		dispatch({
 			type: 'GET_FOLLOWERS',
