@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { getUserAndRepos } from '@context/github/githubActions';
 import Spinner from '@components/layout/Spinner';
-import { FaUsers } from 'react-icons/fa';
+import { FaUsers, FaChevronLeft } from 'react-icons/fa';
 import { HiUsers } from 'react-icons/hi';
 import { ImCodepen } from 'react-icons/im';
 import { BsShopWindow } from 'react-icons/bs';
@@ -54,7 +54,7 @@ const User = () => {
 						dispatch({ type: 'CLEAR_USERS' }, { type: 'CLEAR_USER' })
 					}
 				>
-					Back to Search
+					<FaChevronLeft /> Back to Search
 				</Link>
 			</div>
 			<div className='user-profile-page-container'>
@@ -110,7 +110,10 @@ const User = () => {
 				</div>
 			</div>
 			<div className='user-profile-page-stats'>
-				<div className='user-profile-page-stats-item'>
+				<div
+					className='user-profile-page-stats-item'
+					onClick={() => navigate(`/user/${params.login}/followers`)}
+				>
 					<FaUsers />
 					<>
 						<span>Followers</span>

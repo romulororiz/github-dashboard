@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import Navbar from './components/layout/Navbar';
 import User from './pages/User';
 import Repos from './pages/Repos';
+import Followers from './pages/Followers';
 
 function App() {
 	return (
@@ -14,6 +15,7 @@ function App() {
 						<Route path='/' exact element={<Home />} />
 						<Route path='/user/:login' element={<User />} />
 						<Route path='/user/:login/repos' element={<Repos />} />
+						<Route path='/user/:login/followers' element={<Followers />} />
 					</Routes>
 				</main>
 			</div>

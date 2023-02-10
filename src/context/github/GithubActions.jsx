@@ -44,3 +44,17 @@ export const getUserAndRepos = async login => {
 		};
 	}
 };
+
+// Get user
+export const getUser = async login => {
+	const response = await github.get(`/users/${login}`);
+
+	return response.data;
+};
+
+// Get user followers
+export const getUserFollowers = async login => {
+	const response = await github.get(`/users/${login}/followers`);
+
+	return response.data;
+};
