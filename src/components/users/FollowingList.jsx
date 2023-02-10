@@ -13,7 +13,6 @@ const FollowingList = () => {
 		useGithubContext();
 
 	useEffect(() => {
-		dispatch({ type: 'SET_LOADING' });
 		getUser(params.login);
 		getUserFollowing(params.login);
 	}, [params.login]);

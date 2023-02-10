@@ -40,9 +40,10 @@ const User = () => {
 			<div className='user-profile-page-back'>
 				<Link
 					to='/'
-					onClick={() =>
-						dispatch({ type: 'CLEAR_USERS' }, { type: 'CLEAR_USER' })
-					}
+					onClick={() => {
+						dispatch({ type: 'CLEAR_USERS' });
+						dispatch({ type: 'CLEAR_USER' });
+					}}
 				>
 					<FaChevronLeft /> Back to Search
 				</Link>
@@ -110,7 +111,10 @@ const User = () => {
 			<div className='user-profile-page-stats'>
 				<div
 					className='user-profile-page-stats-item'
-					onClick={() => navigate(`/user/${params.login}/followers`)}
+					onClick={() => {
+						navigate(`/user/${params.login}/followers`);
+						dispatch({ type: 'SET_LOADING' });
+					}}
 				>
 					<FaUsers />
 					<>
@@ -120,7 +124,10 @@ const User = () => {
 				</div>
 				<div
 					className='user-profile-page-stats-item'
-					onClick={() => navigate(`/user/${params.login}/following`)}
+					onClick={() => {
+						navigate(`/user/${params.login}/following`);
+						dispatch({ type: 'SET_LOADING' });
+					}}
 				>
 					<HiUsers />
 					<>
@@ -130,7 +137,10 @@ const User = () => {
 				</div>
 				<div
 					className='user-profile-page-stats-item'
-					onClick={() => navigate(`/user/${params.login}/repos`)}
+					onClick={() => {
+						navigate(`/user/${params.login}/repos`);
+						dispatch({ type: 'SET_LOADING' });
+					}}
 				>
 					<ImCodepen />
 					<>

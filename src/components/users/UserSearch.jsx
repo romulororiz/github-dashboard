@@ -7,7 +7,9 @@ import '@styles/scss/components/users/UserSearch.scss';
 const UserSearch = () => {
 	const [query, setQuery] = useState('');
 
-	const { users, dispatch, searchUsers } = useGithubContext();
+	const { users, dispatch, searchUsers, user} = useGithubContext();
+
+	console.log(user)
 
 	const { setAlert, alert } = useAlertContext();
 
@@ -19,7 +21,9 @@ const UserSearch = () => {
 		if (query === '') {
 			setAlert('You need to search for something', 'error');
 		} else {
+			dispatch({ type: 'SET_LOADING' });
 			searchUsers(query);
+			setQuery('');
 		}
 	};
 
@@ -45,7 +49,10 @@ const UserSearch = () => {
 					<button
 						type='button'
 						className='user-clear__button'
-						onClick={() => dispatch({ type: 'CLEAR_USERS' })}
+						onClick={() => {
+							dispatch({ type: 'CLEAR_USERS' });
+							setQuery('');
+						}}
 					>
 						Clear
 					</button>
