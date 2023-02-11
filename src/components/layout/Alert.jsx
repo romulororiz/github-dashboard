@@ -1,11 +1,10 @@
-import { useAlertContext } from '@hooks/useAlertContext';
+import { FiAlertCircle } from 'react-icons/fi';
 import '@styles/scss/components/layout/Alert.scss';
 
 const Alert = ({ msg }) => {
-	const { alert } = useAlertContext();
-
 	return (
 		<div className='alert'>
+			<FiAlertCircle />
 			<p>{msg}</p>
 		</div>
 	);

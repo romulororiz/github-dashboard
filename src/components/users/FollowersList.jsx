@@ -1,10 +1,12 @@
-import UserItem from './UserItem';
 import { useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useGithubContext } from '@hooks/useGithubContext';
-import Spinner from '@components/layout/Spinner';
-import '@styles/scss/components/users/FollowersList.scss';
+import { useAlertContext } from '@hooks/useAlertContext';
 import { FaChevronLeft } from 'react-icons/fa';
+import UserItem from './UserItem';
+import Spinner from '@components/layout/Spinner';
+import Alert from '@components/layout/Alert';
+import '@styles/scss/components/users/FollowersList.scss';
 
 const FollowersList = () => {
 	const params = useParams();
@@ -13,6 +15,8 @@ const FollowersList = () => {
 	const { user, dispatch, loading, followers, getUser, getUserFollowers } =
 		useGithubContext();
 
+	const { alert, setAlert } = useAlertContext();
+
 	useEffect(() => {
 		const getUserData = async () => {
 			dispatch({ type: 'SET_LOADING' });
@@ -20,7 +24,7 @@ const FollowersList = () => {
 				await getUser(params.login);
 				await getUserFollowers(params.login);
 			} catch (error) {
-				navigate('/not-found');
+				setAlert(error.message);
 			}
 		};
 
@@ -42,14 +46,20 @@ const FollowersList = () => {
 					<FaChevronLeft /> Back to Profile
 				</Link>
 			</div>
-			<h2>
-				{`${user?.name}'s Followers`} ({user.followers})
-			</h2>
-			<div className='followers-list-grid'>
-				{followers?.map(follower => (
-					<UserItem key={follower.id} user={follower} />
-				))}
-			</div>
+			{!alert ? (
+				<>
+					<h2>
+						{`${user?.name}'s Followers`} ({user.followers})
+					</h2>
+					<div className='followers-list-grid'>
+						{followers?.map(follower => (
+							<UserItem key={follower.id} user={follower} />
+						))}
+					</div>
+				</>
+			) : (
+				<Alert msg={alert?.msg} />
+			)}
 		</div>
 	);
 };

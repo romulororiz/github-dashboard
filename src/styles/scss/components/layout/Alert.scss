@@ -1,8 +1,19 @@
 @import '../../variables.scss', '../../breakpoints.scss';
 
 .alert {
+	display: flex;
+	width: fit-content;
+	background-color: $primary-red-light;
 	margin-top: .5rem;
-	padding: 1rem 0;
+	padding: .5rem 1rem;
 	border-radius: 8px;
-	color: $primary-red-light;
+	color: rgba($primary-white, .75);
+
+	svg {
+		font-size: 1.2rem;
+		margin-right: .25rem;
+		position: relative;
+		top: 3px;
+		color: rgba($primary-white, .75);
+	}
 }

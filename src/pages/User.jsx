@@ -1,15 +1,19 @@
 import { useGithubContext } from '@hooks/useGithubContext';
+import { useAlertContext } from '@hooks/useAlertContext';
 import { useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { FaUsers, FaChevronLeft, FaAt, FaTwitter } from 'react-icons/fa';
 import { HiUsers } from 'react-icons/hi';
 import { ImCodepen } from 'react-icons/im';
 import { MdLocationOn } from 'react-icons/md';
+import Alert from '@components/layout/Alert';
 import Spinner from '@components/layout/Spinner';
 import '@styles/scss/pages/User.scss';
 
 const User = () => {
-	const { user, loading, dispatch, getUserAndRepos } = useGithubContext();
+	const { user, loading, dispatch, getUser } = useGithubContext();
+
+	const { alert, setAlert } = useAlertContext();
 
 	const params = useParams();
 
@@ -19,7 +23,7 @@ const User = () => {
 		const getUserData = async () => {
 			dispatch({ type: 'SET_LOADING' });
 			try {
-				await getUserAndRepos(params.login);
+				await getUser(params.login);
 			} catch (error) {
 				navigate('/not-found');
 			}

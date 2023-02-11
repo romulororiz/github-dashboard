@@ -30,49 +30,51 @@ export const GithubProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(githubReducer, initialState);
 
 	// Search users
-	const searchUsers = async query => {
+	const getUsers = async query => {
 		const params = new URLSearchParams({
 			q: query,
 		});
 
 		const response = await github.get(`/search/users?${params}&per_page=100`);
 
-		const items = response.data.items;
+		if (response.data.items.length === 0) {
+			throw new Error(`user ${query} not found`);
+		}
 
-		if (items.length === 0) {
-			dispatch({
-				type: 'USER_NOT_FOUND',
-				payload: `user ${query} does not exist`,
-			});
-
-			setTimeout(() => dispatch({ type: 'CLEAR_ERROR' }), 3000);
+		if (response.status !== 200) {
+			throw new Error(`Failed to fetch users`);
 		}
 
 		dispatch({
 			type: 'GET_USERS',
-			payload: items,
+			payload: response.data.items,
 		});
 	};
 
 	// Get user and repos
-	const getUserAndRepos = async login => {
-		const [user, repos] = await Promise.all([
-			github.get(`/users/${login}`),
-			github.get(`/users/${login}/repos?per_page=100`),
-		]);
+	const getRepos = async login => {
+		const response = await github.get(`/users/${login}/repos?per_page=100`);
+
+		console.log(response);
+
+		// handle api error
+		if (response.status !== 200) {
+			throw new Error(`Failed to fetch repos for ${login}`);
+		}
 
 		dispatch({
-			type: 'GET_USER_AND_REPOS',
-			payload: {
-				user: user.data,
-				repos: repos.data,
-			},
+			type: 'GET_REPOS',
+			payload: response.data,
 		});
 	};
 
 	// Get user
 	const getUser = async login => {
 		const response = await github.get(`/users/${login}`);
+
+		if (response.status !== 200) {
+			throw new Error(`Failed to fetch user ${login}`);
+		}
 
 		dispatch({
 			type: 'GET_USER',
@@ -84,6 +86,10 @@ export const GithubProvider = ({ children }) => {
 	const getUserFollowers = async login => {
 		const response = await github.get(`/users/${login}/followers?per_page=100`);
 
+		if (response.status !== 200) {
+			throw new Error(`Failed to fetch followers for ${login}`);
+		}
+
 		dispatch({
 			type: 'GET_FOLLOWERS',
 			payload: response.data,
@@ -93,6 +99,10 @@ export const GithubProvider = ({ children }) => {
 	// Get user following
 	const getUserFollowing = async login => {
 		const response = await github.get(`/users/${login}/following`);
+
+		if (response.status !== 200) {
+			throw new Error(`Failed to fetch following for ${login}`);
+		}
 
 		dispatch({
 			type: 'GET_FOLLOWING',
@@ -114,8 +124,8 @@ export const GithubProvider = ({ children }) => {
 			value={{
 				...state,
 				dispatch,
-				searchUsers,
-				getUserAndRepos,
+				getUsers,
+				getRepos,
 				getUser,
 				getUserFollowers,
 				getUserFollowing,

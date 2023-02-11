@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useGithubContext } from '@hooks/useGithubContext';
+import { useAlertContext } from '@hooks/useAlertContext';
 import { FaChevronLeft } from 'react-icons/fa';
 import Spinner from '@components/layout/Spinner';
+import Alert from '@components/layout/Alert';
 import UserItem from './UserItem';
 import '@styles/scss/components/users/FollowingList.scss';
 
@@ -13,6 +15,8 @@ const FollowingList = () => {
 	const { user, dispatch, loading, following, getUserFollowing, getUser } =
 		useGithubContext();
 
+	const { alert, setAlert } = useAlertContext();
+
 	useEffect(() => {
 		const getUserData = async () => {
 			dispatch({ type: 'SET_LOADING' });
@@ -20,7 +24,7 @@ const FollowingList = () => {
 				await getUser(params.login);
 				await getUserFollowing(params.login);
 			} catch (error) {
-				navigate('/not-found');
+				setAlert(error.message);
 			}
 		};
 
@@ -42,14 +46,20 @@ const FollowingList = () => {
 					<FaChevronLeft /> Back to Profile
 				</Link>
 			</div>
-			<h2>
-				{`Followed by ${user?.name}`} ({user.following})
-			</h2>
-			<div className='following-list-grid'>
-				{following?.map(follow => (
-					<UserItem key={follow.id} user={follow} />
-				))}
-			</div>
+			{!alert ? (
+				<>
+					<h2>
+						{`Followed by ${user?.name}`} ({user.following})
+					</h2>
+					<div className='following-list-grid'>
+						{following?.map(follow => (
+							<UserItem key={follow.id} user={follow} />
+						))}
+					</div>
+				</>
+			) : (
+				<Alert msg={alert?.msg} />
+			)}
 		</div>
 	);
 };

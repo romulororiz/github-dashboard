@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useGithubContext } from '@hooks/useGithubContext';
 import { useAlertContext } from '@hooks/useAlertContext';
 import Alert from '../layout/Alert';
@@ -7,7 +7,7 @@ import '@styles/scss/components/users/UserSearch.scss';
 const UserSearch = () => {
 	const [query, setQuery] = useState('');
 
-	const { users, dispatch, searchUsers, error } = useGithubContext();
+	const { users, dispatch, getUsers, error } = useGithubContext();
 
 	const { setAlert, alert } = useAlertContext();
 
@@ -18,10 +18,14 @@ const UserSearch = () => {
 
 		if (query === '') {
 			setAlert('Please enter something');
-		} else {
-			dispatch({ type: 'SET_LOADING' });
-			await searchUsers(query);
+			return;
+		}
+
+		try {
+			await getUsers(query);
 			setQuery('');
+		} catch (error) {
+			setAlert(error.message);
 		}
 	};
 
@@ -58,7 +62,6 @@ const UserSearch = () => {
 			</div>
 
 			{alert && <Alert msg={alert?.msg} />}
-			{error && <Alert msg={error} />}
 		</div>
 	);
 };
