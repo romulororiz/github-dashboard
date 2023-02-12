@@ -20,5 +20,10 @@
 		position: relative;
 		top: 3px;
 		color: rgba($primary-white, 0.75);
+
+		@include md {
+			font-size: 1rem;
+			top: 2px;
+		}
 	}
 }
