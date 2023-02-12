@@ -24,7 +24,6 @@ export const GithubProvider = ({ children }) => {
 		following: [],
 		repos: [],
 		loading: false,
-		error: null,
 	};
 
 	const [state, dispatch] = useReducer(githubReducer, initialState);
@@ -38,7 +37,7 @@ export const GithubProvider = ({ children }) => {
 		const response = await github.get(`/search/users?${params}&per_page=100`);
 
 		if (response.data.items.length === 0) {
-			throw new Error(`user ${query} not found`);
+			throw new Error(`user '${query}' not found`);
 		}
 
 		if (response.status !== 200) {
@@ -55,9 +54,6 @@ export const GithubProvider = ({ children }) => {
 	const getRepos = async login => {
 		const response = await github.get(`/users/${login}/repos?per_page=100`);
 
-		console.log(response);
-
-		// handle api error
 		if (response.status !== 200) {
 			throw new Error(`Failed to fetch repos for ${login}`);
 		}
@@ -72,6 +68,7 @@ export const GithubProvider = ({ children }) => {
 	const getUser = async login => {
 		const response = await github.get(`/users/${login}`);
 
+		console.log(response);
 		if (response.status !== 200) {
 			throw new Error(`Failed to fetch user ${login}`);
 		}

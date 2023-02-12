@@ -1,21 +1,20 @@
-import { useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { useGithubContext } from '@hooks/useGithubContext';
-import { useAlertContext } from '@hooks/useAlertContext';
 import { FaChevronLeft } from 'react-icons/fa';
 import Spinner from '@components/layout/Spinner';
-import Alert from '@components/layout/Alert';
+import Error from '@components/layout/Error';
 import UserItem from './UserItem';
 import '@styles/scss/components/users/FollowingList.scss';
 
 const FollowingList = () => {
+	const [error, setError] = useState(false);
+	const [errorMessage, setErrorMessage] = useState('');
+
 	const params = useParams();
-	const navigate = useNavigate();
 
 	const { user, dispatch, loading, following, getUserFollowing, getUser } =
 		useGithubContext();
-
-	const { alert, setAlert } = useAlertContext();
 
 	useEffect(() => {
 		const getUserData = async () => {
@@ -24,12 +23,18 @@ const FollowingList = () => {
 				await getUser(params.login);
 				await getUserFollowing(params.login);
 			} catch (error) {
-				setAlert(error.message);
+				setError(true);
+				setErrorMessage(
+					`Error: ${error.message} - ${error.response?.data.message}`
+				);
 			}
 		};
 
+		setError(false);
 		getUserData();
 	}, [params.login]);
+
+	if (error) return <Error msg={errorMessage} />;
 
 	if (loading) return <Spinner />;
 
@@ -46,7 +51,9 @@ const FollowingList = () => {
 					<FaChevronLeft /> Back to Profile
 				</Link>
 			</div>
-			{!alert ? (
+			{!following.length ? (
+				<Spinner />
+			) : (
 				<>
 					<h2>
 						{`Followed by ${user?.name}`} ({user.following})
@@ -57,8 +64,6 @@ const FollowingList = () => {
 						))}
 					</div>
 				</>
-			) : (
-				<Alert msg={alert?.msg} />
 			)}
 		</div>
 	);

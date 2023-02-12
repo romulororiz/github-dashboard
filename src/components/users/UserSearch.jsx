@@ -7,7 +7,7 @@ import '@styles/scss/components/users/UserSearch.scss';
 const UserSearch = () => {
 	const [query, setQuery] = useState('');
 
-	const { users, dispatch, getUsers, error } = useGithubContext();
+	const { users, dispatch, getUsers } = useGithubContext();
 
 	const { setAlert, alert } = useAlertContext();
 
@@ -22,9 +22,11 @@ const UserSearch = () => {
 		}
 
 		try {
+			dispatch({ type: 'SET_LOADING' });
 			await getUsers(query);
 			setQuery('');
 		} catch (error) {
+			dispatch({ type: 'CLEAR_LOADING' });
 			setAlert(error.message);
 		}
 	};

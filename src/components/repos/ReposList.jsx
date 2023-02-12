@@ -1,15 +1,16 @@
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useGithubContext } from '@hooks/useGithubContext';
-import { useAlertContext } from '@hooks/useAlertContext';
 import { useEffect, useState } from 'react';
 import { FaChevronLeft } from 'react-icons/fa';
 import Spinner from '@components/layout/Spinner';
+import Error from '@components/layout/Error';
 import RepoItem from './RepoItem';
-import Alert from '@components/layout/Alert';
 import '@styles/scss/components/repos/ReposList.scss';
 
 const ReposList = () => {
 	const [order, setOrder] = useState('desc');
+	const [error, setError] = useState(false);
+	const [errorMessage, setErrorMessage] = useState('');
 
 	const params = useParams();
 	const navigate = useNavigate();
@@ -24,8 +25,6 @@ const ReposList = () => {
 		getUser,
 	} = useGithubContext();
 
-	const { alert, setAlert } = useAlertContext();
-
 	useEffect(() => {
 		const getUserData = async () => {
 			dispatch({ type: 'SET_LOADING' });
@@ -33,11 +32,14 @@ const ReposList = () => {
 				await getUser(params.login);
 				await getRepos(params.login);
 			} catch (error) {
-				setAlert(error.message);
-				navigate('/not-found');
+				setError(true);
+				setErrorMessage(
+					`Error: ${error.message} - ${error.response?.data.message}`
+				);
 			}
 		};
 
+		setError(false);
 		getUserData();
 	}, [params.login]);
 
@@ -46,6 +48,8 @@ const ReposList = () => {
 	const handleSort = () => {
 		setOrder(order === 'desc' ? 'asc' : 'desc');
 	};
+
+	if (error) return <Error msg={errorMessage} />;
 
 	if (loading) return <Spinner />;
 
@@ -62,7 +66,9 @@ const ReposList = () => {
 				</Link>
 			</div>
 
-			{!alert ? (
+			{!repos.length ? (
+				<Spinner />
+			) : (
 				<>
 					<div className='repos-list-heading'>
 						<h2>
@@ -79,8 +85,6 @@ const ReposList = () => {
 						))}
 					</div>
 				</>
-			) : (
-				<Alert msg={alert} />
 			)}
 		</div>
 	);

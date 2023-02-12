@@ -14,12 +14,10 @@ const githubReducer = (state, action) => {
 			return { ...state, followers: action.payload, loading: false };
 		case 'GET_FOLLOWING':
 			return { ...state, following: action.payload, loading: false };
-		case 'USER_NOT_FOUND':
-			return { ...state, error: action.payload, loading: false };
-		case 'CLEAR_ERROR':
-			return { ...state, error: null };
 		case 'SET_LOADING':
 			return { ...state, loading: true };
+		case 'CLEAR_LOADING':
+			return { ...state, loading: false };
 		case 'CLEAR_USERS':
 			return { ...state, users: [], loading: false };
 		case 'CLEAR_USER':

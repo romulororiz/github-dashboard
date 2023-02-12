@@ -1,0 +1,20 @@
+@import '../../variables', '../../breakpoints.scss';
+
+.error {
+	display: flex;
+	margin-top: 2rem;
+	background-color: $primary-red-light;
+	border-radius: 8px;
+	color: $primary-white;
+	padding: 1rem;
+
+	@include md {
+		font-size: $font-size-l;
+	}
+
+	svg {
+		margin-right: .5rem;
+		position: relative;
+		top: 0.3rem;
+	}
+}

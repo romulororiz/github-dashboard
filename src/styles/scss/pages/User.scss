@@ -135,7 +135,8 @@
 				border-radius: 8px;
 
 				.user-profile-page-info-details-item {
-					min-width: 100%;
+					width: 100%;
+					min-width: 200px;
 					padding: 0.5rem;
 					display: flex;
 					flex-direction: column;
