@@ -33,23 +33,19 @@ const ReposList = () => {
 				await getRepos(params.login);
 			} catch (error) {
 				setError(true);
-				setErrorMessage(
-					`Error: ${error.message} - ${error.response?.data.message}`
-				);
+				setErrorMessage(error.message);
+				dispatch({ type: 'CLEAR_LOADING' });
 			}
 		};
 
 		setError(false);
 		getUserData();
 	}, [params.login]);
-
 	sortReposByStars(repos, order);
 
 	const handleSort = () => {
 		setOrder(order === 'desc' ? 'asc' : 'desc');
 	};
-
-	if (error) return <Error msg={errorMessage} />;
 
 	if (loading) return <Spinner />;
 
@@ -66,14 +62,15 @@ const ReposList = () => {
 				</Link>
 			</div>
 
-			{!repos.length ? (
+			{!repos.length && !error ? (
 				<Spinner />
+			) : error ? (
+				<Error msg={errorMessage} />
 			) : (
 				<>
 					<div className='repos-list-heading'>
 						<h2>
-							{`${user ? user.name : 'loading...'}'s Public Repos`} (
-							{user?.public_repos})
+							{`${user?.name}'s Public Repos`} ({user?.public_repos})
 						</h2>
 						<button onClick={handleSort}>
 							Sort by Stars {order === 'desc' ? '↓' : '↑'}

@@ -58,6 +58,11 @@ export const GithubProvider = ({ children }) => {
 			throw new Error(`Failed to fetch repos for ${login}`);
 		}
 
+		// check if user has repos
+		if (response.data.length === 0) {
+			throw new Error(`user '${login}' has no repos`);
+		}
+
 		dispatch({
 			type: 'GET_REPOS',
 			payload: response.data,
@@ -68,7 +73,6 @@ export const GithubProvider = ({ children }) => {
 	const getUser = async login => {
 		const response = await github.get(`/users/${login}`);
 
-		console.log(response);
 		if (response.status !== 200) {
 			throw new Error(`Failed to fetch user ${login}`);
 		}
@@ -87,6 +91,11 @@ export const GithubProvider = ({ children }) => {
 			throw new Error(`Failed to fetch followers for ${login}`);
 		}
 
+		// check if user has followers
+		if (response.data.length === 0) {
+			throw new Error(`user '${login}' has no followers`);
+		}
+
 		dispatch({
 			type: 'GET_FOLLOWERS',
 			payload: response.data,
@@ -99,6 +108,11 @@ export const GithubProvider = ({ children }) => {
 
 		if (response.status !== 200) {
 			throw new Error(`Failed to fetch following for ${login}`);
+		}
+
+		// check if user is following anyone
+		if (response.data.length === 0) {
+			throw new Error(`user '${login}' is not following anyone`);
 		}
 
 		dispatch({

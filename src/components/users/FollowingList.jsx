@@ -24,17 +24,13 @@ const FollowingList = () => {
 				await getUserFollowing(params.login);
 			} catch (error) {
 				setError(true);
-				setErrorMessage(
-					`Error: ${error.message} - ${error.response?.data.message}`
-				);
+				setErrorMessage(error.message);
 			}
 		};
 
 		setError(false);
 		getUserData();
 	}, [params.login]);
-
-	if (error) return <Error msg={errorMessage} />;
 
 	if (loading) return <Spinner />;
 
@@ -51,8 +47,10 @@ const FollowingList = () => {
 					<FaChevronLeft /> Back to Profile
 				</Link>
 			</div>
-			{!following.length ? (
+			{!following.length && !error ? (
 				<Spinner />
+			) : error ? (
+				<Error msg={errorMessage} />
 			) : (
 				<>
 					<h2>

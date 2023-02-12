@@ -13,8 +13,12 @@
 	}
 
 	svg {
-		margin-right: .5rem;
+		margin-right: 0.5rem;
 		position: relative;
 		top: 0.3rem;
+
+		@include md {
+			top: 0.2rem;
+		}
 	}
 }

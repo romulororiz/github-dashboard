@@ -26,9 +26,7 @@ const User = () => {
 				await getUser(params.login);
 			} catch (error) {
 				setError(true);
-				setErrorMessage(
-					`Error: ${error.message} - ${error.response?.data.message}`
-				);
+				setErrorMessage(error.message);
 			}
 		};
 
