@@ -1,4 +1,4 @@
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useGithubContext } from '@hooks/useGithubContext';
 import { useEffect, useState } from 'react';
 import { FaChevronLeft } from 'react-icons/fa';
@@ -13,7 +13,6 @@ const ReposList = () => {
 	const [errorMessage, setErrorMessage] = useState('');
 
 	const params = useParams();
-	const navigate = useNavigate();
 
 	const {
 		user,
